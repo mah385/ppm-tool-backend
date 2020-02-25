@@ -10,4 +10,6 @@ public interface ProjectService {
 
     Iterable<Project> getAllProjects();
 
+    void deleteProjectByProjectIdentifier(String projectIdentifier);
+
 }

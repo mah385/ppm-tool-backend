@@ -1,6 +1,8 @@
 package com.ppmtool.controller;
 
+import com.ppmtool.domain.Project;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,4 +25,8 @@ public class HelloWorldController {
         return new ResponseEntity<Map<String, Object>>(responseMap, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/project", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Project project() {
+        return new Project();
+    }
 }
