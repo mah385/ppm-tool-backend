@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
@@ -26,8 +28,7 @@ public class ProjectServiceImpl implements ProjectService {
             try {
                 savedProject = projectRepository.save(project);
             } catch (Exception e) {
-                throw new ProjectIdException("A Project with '" + project.getProjectIdentifier().toUpperCase()
-                        + "' as project identifier already exists in the database", HttpStatus.CONFLICT);
+                throw new ProjectIdException("A Project with '" + project.getProjectIdentifier().toUpperCase() + "' as project identifier already exists in the database", HttpStatus.CONFLICT);
             }
         } else {
             try {
@@ -36,9 +37,7 @@ public class ProjectServiceImpl implements ProjectService {
                 project.setCreatedDate(savedProject.getCreatedDate());
                 savedProject = projectRepository.save(project);
             } catch (Exception e) {
-                throw new ProjectIdException(
-                        "A Project with '" + project.getId() + "' as project ID doesn't exists in the database",
-                        HttpStatus.NOT_FOUND);
+                throw new ProjectIdException("A Project with '" + project.getId() + "' as project ID doesn't exists in the database", HttpStatus.NOT_FOUND);
             }
         }
         return savedProject;
@@ -48,14 +47,13 @@ public class ProjectServiceImpl implements ProjectService {
     public Project getProjectByProjectIdentifier(String projectIdentifier) {
         final Project byProjectIdentifier = projectRepository.findByProjectIdentifier(projectIdentifier);
         if (byProjectIdentifier == null) {
-            throw new ProjectIdException("A Project with '" + projectIdentifier.toUpperCase()
-                    + "' as project identifier doesn't exists in the database", HttpStatus.NOT_FOUND);
+            throw new ProjectIdException("A Project with '" + projectIdentifier.toUpperCase() + "' as project identifier doesn't exists in the database", HttpStatus.NOT_FOUND);
         }
         return byProjectIdentifier;
     }
 
     @Override
-    public Iterable<Project> getAllProjects() {
+    public List<Project> getAllProjects() {
         return projectRepository.findAll();
     }
 
@@ -63,8 +61,7 @@ public class ProjectServiceImpl implements ProjectService {
     public void deleteProjectByProjectIdentifier(String projectIdentifier) {
         final Project byProjectIdentifier = projectRepository.findByProjectIdentifier(projectIdentifier);
         if (byProjectIdentifier == null) {
-            throw new ProjectIdException("A Project with '" + projectIdentifier.toUpperCase()
-                    + "' as project identifier doesn't exists in the database", HttpStatus.NOT_FOUND);
+            throw new ProjectIdException("A Project with '" + projectIdentifier.toUpperCase() + "' as project identifier doesn't exists in the database", HttpStatus.NOT_FOUND);
         }
         projectRepository.delete(byProjectIdentifier);
     }

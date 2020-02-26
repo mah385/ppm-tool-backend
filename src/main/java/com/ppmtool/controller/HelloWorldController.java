@@ -13,10 +13,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/misc")
 public class HelloWorldController {
 
-    @GetMapping(value = "/hello-world")
+    @GetMapping(value = "/hello-world", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Map<String, Object>> helloWorld() {
         Map<String, Object> responseMap = new HashMap<>();
         responseMap.put("timestamp", LocalDateTime.now());
@@ -29,4 +29,5 @@ public class HelloWorldController {
     public Project project() {
         return new Project();
     }
+
 }
