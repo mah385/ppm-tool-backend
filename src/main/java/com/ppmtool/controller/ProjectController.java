@@ -16,6 +16,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api")
+@CrossOrigin(origins = {"http://localhost:3000"})
 public class ProjectController {
 
     private final ProjectService projectService;
