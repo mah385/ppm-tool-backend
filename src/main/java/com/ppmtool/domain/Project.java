@@ -53,16 +53,16 @@ public class Project {
 
     @PrePersist
     private void prePersistProject() {
-        LOGGER.info("inside prePersistProject method");
+        System.err.println("inside prePersistProject method");
         this.createdDate = LocalDateTime.now();
-        LOGGER.info(this.toString());
+        System.err.println(this.toString());
     }
 
     @PreUpdate
     private void preUpdateProject() {
-        LOGGER.info("inside preUpdateProject method");
+        System.err.println("inside preUpdateProject method");
         this.lastUpdatedDate = LocalDateTime.now();
-        LOGGER.info(this.toString());
+        System.err.println(this.toString());
     }
 
 }

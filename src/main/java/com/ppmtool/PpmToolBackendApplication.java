@@ -1,5 +1,6 @@
 package com.ppmtool;
 
+import com.ppmtool.domain.Project;
 import com.ppmtool.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -45,7 +46,24 @@ public class PpmToolBackendApplication {
     @EventListener({ApplicationReadyEvent.class})
     void applicationReadyEvent() {
         System.err.println("APPLICATION STARTED");
+        Project project1 = new Project();
+        project1.setProjectIdentifier("6546");
+        project1.setProjectName("Delivery Service");
+        project1.setDescription("To deliver food to customers");
 
+        Project project2 = new Project();
+        project2.setProjectIdentifier("3547");
+        project2.setProjectName("Integration Accounts Service");
+        project2.setDescription("To integrate R_POS6, R_POS7, HQ and DE");
+
+        Project project3 = new Project();
+        project3.setProjectIdentifier("6549");
+        project3.setProjectName("Mood Recognition");
+        project3.setDescription("Facial Analysis");
+
+        projectRepository.save(project1);
+        projectRepository.save(project2);
+        projectRepository.save(project3);
     }
 
     public static void main(String[] args) {
