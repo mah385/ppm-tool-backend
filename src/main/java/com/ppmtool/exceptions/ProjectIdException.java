@@ -1,18 +1,12 @@
 package com.ppmtool.exceptions;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-@Setter
-@Getter
+@ResponseStatus(HttpStatus.BAD_REQUEST)
 public class ProjectIdException extends RuntimeException {
 
-    private HttpStatus httpStatus;
-
-    public ProjectIdException(String message, HttpStatus httpStatus) {
+    public ProjectIdException(String message) {
         super(message);
-        this.httpStatus = httpStatus;
     }
-
 }
